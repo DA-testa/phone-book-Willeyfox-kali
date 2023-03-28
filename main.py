@@ -10,7 +10,12 @@ class Query:
 
 def read_queries():
     n = int(input())
-    return [Query(input().split()) for i in range(n)]
+    queries = []
+    for i in range(n):
+        query_input = input().split()
+        query = Query(query_input)
+        queries.append(query)
+    return queries
 
 
 def write_responses(result):

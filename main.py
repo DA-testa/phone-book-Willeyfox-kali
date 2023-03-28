@@ -32,9 +32,9 @@ def process_queries(queries):
             else: # otherwise, just add it
                 contacts.append(cur_query)
         elif cur_query.type == 'del':
-            for j in range(len(contacts)):
-                if contacts[j].number == cur_query.number:
-                    contacts.pop(j)
+            for i in contacts:
+                if i.number == cur_query.number:
+                    contacts.remove(i)
                     break
         else:
             response = 'not found'

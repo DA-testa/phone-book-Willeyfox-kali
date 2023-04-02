@@ -28,7 +28,7 @@ def process_queries(queries):
     contacts = []
     for query in queries:
         if query.type == 'add':
-            contacts[query.number] = Contact(query.name)
+            contacts[query.number] = Contacts(query.name)
         elif query.type == 'del':
             if query.number in contacts:
                 del contacts[query.number]

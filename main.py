@@ -7,9 +7,18 @@ class Query:
         if self.type == 'add':
             self.name = query[2]
 
+class Contacts:
+    def __init__(self, name):
+        self.name = name
+        
 def read_queries():
     n = int(input())
-    return [Query(input().split()) for i in range(n)]
+    queries = []
+    for i in range(n):
+        query_input = input().split()
+        query = Query(query_input)
+        queries.append(query)
+    return queries
 
 def write_responses(result):
     print('\n'.join(result))
@@ -29,9 +38,9 @@ def process_queries(queries):
             else: # otherwise, just add it
                 contacts.append(cur_query)
         elif cur_query.type == 'del':
-            for j in range(len(contacts)):
-                if contacts[j].number == cur_query.number:
-                    contacts.pop(j)
+            for i in contacts:
+                if i.number == cur_query.number:
+                    contacts.remove(i)
                     break
         else:
             response = 'not found'
@@ -42,6 +51,11 @@ def process_queries(queries):
             result.append(response)
     return result
 
+def main():
+    queries = read_queries()
+    responses = process_queries(queries)
+    write_responses(responses)
+
 if __name__ == '__main__':
-    write_responses(process_queries(read_queries()))
+    main()
 
